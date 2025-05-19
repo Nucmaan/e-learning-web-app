@@ -6,39 +6,39 @@ const FeaturedCourses = () => {
   const courses = [
     {
       id: 1,
-      title: 'Digital Marketing Strategy',
-      level: 'Intermediate',
-      duration: '2 hour',
-      rating: 4.5,
-      reviews: 42,
-      image: '/images/nasri.jpeg', // Will be replaced with actual course image later
+      title: 'Complete Web Development Bootcamp',
+      level: 'Beginner to Advanced',
+      duration: '42 hours',
+      rating: 4.8,
+      reviews: 1254,
+      image: '/images/web.jpg',
     },
     {
       id: 2,
-      title: 'Digital Marketing Strategy',
-      level: 'Intermediate',
-      duration: '2 hour',
-      rating: 4.8,
-      reviews: 56,
-      image: '/images/nasri.jpeg', // Will be replaced with actual course image later
+      title: 'Advanced Data Science with Python',
+      level: 'Advanced',
+      duration: '28 hours',
+      rating: 4.7,
+      reviews: 876,
+      image: '/images/data.jpg',
     },
     {
       id: 3,
-      title: 'Digital Marketing Strategy',
+      title: 'Digital Marketing Masterclass',
       level: 'Intermediate',
-      duration: '2 hour',
-      rating: 5.0,
-      reviews: 29,
-      image: '/images/nasri.jpeg', // Will be replaced with actual course image later
+      duration: '18 hours',
+      rating: 4.9,
+      reviews: 932,
+      image: '/images/marketing.jpg',
     },
     {
       id: 4,
-      title: 'Digital Marketing Strategy',
+      title: 'UI/UX Design Principles & Practice',
       level: 'Intermediate',
-      duration: '2 hour',
-      rating: 4.8,
-      reviews: 36,
-      image: '/images/nasri.jpeg', // Will be replaced with actual course image later
+      duration: '24 hours',
+      rating: 4.6,
+      reviews: 743,
+      image: '/images/uiutx.jpg',
     }
   ];
 
@@ -51,7 +51,7 @@ const FeaturedCourses = () => {
         </div>
         
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Our featured <span className="text-orange-500">courses</span></h2>
+          <h2 className="text-3xl font-bold">Our featured <span className="text-blue-600">courses</span></h2>
           <div className="flex items-center">
             <span className="mr-4 hidden md:inline text-sm font-medium">Most Popular</span>
             <Link href="/courses" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all">
@@ -65,12 +65,15 @@ const FeaturedCourses = () => {
             <Link href={`/courses/${course.id}`} key={course.id} className="block bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all">
               <div className="relative h-48 w-full">
                 <div className="absolute top-2 left-2 bg-white/80 backdrop-blur-sm px-2 py-1 rounded text-xs">
-                  {course.id === 1 ? 'D • 42k' : course.id === 2 ? 'D • 42k' : course.id === 3 ? 'D • 32k' : 'D • 45k'}
+                  {course.id === 1 ? 'Featured • 12.4k students' : 
+                   course.id === 2 ? 'Popular • 8.7k students' : 
+                   course.id === 3 ? 'Hot • 9.3k students' : 
+                   'Trending • 7.4k students'}
                 </div>
                 <div className="w-full h-full bg-blue-200">
                   {/* Will be replaced with actual course image later */}
                   <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-lg font-bold text-gray-800">Course Image</span>
+                    <Image src={course.image} alt={course.title} fill style={{ objectFit: 'cover' }} />
                   </div>
                 </div>
               </div>
@@ -84,7 +87,7 @@ const FeaturedCourses = () => {
                 </div>
                 
                 <div className="flex items-center mt-2">
-                  <div className="flex text-yellow-400">
+                  <div className="flex text-blue-600">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill={i < Math.floor(course.rating) ? "currentColor" : "none"}>
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />

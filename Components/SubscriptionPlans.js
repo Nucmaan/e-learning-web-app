@@ -1,113 +1,169 @@
 import React from 'react';
 
+const CheckIcon = () => (
+  <svg className="h-5 w-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+  </svg>
+);
+
+const PlanFeature = ({ text }) => (
+  <div className="flex items-start space-x-3 mb-4">
+    <CheckIcon />
+    <p className="text-sm text-gray-600">{text}</p>
+  </div>
+);
+
 const SubscriptionPlans = () => {
+  const plans = [
+    {
+      name: "Basic Plan",
+      subtitle: "Learn a single topic or skill",
+      price: "49",
+      period: "month",
+      priceRange: "$49 – $79",
+      description: "Perfect for individuals starting their learning journey",
+      buttonText: "Get Started",
+      buttonVariant: "outline",
+      features: [
+        "Access to individual course content",
+        "Course completion certificate",
+        "24/7 online access",
+        "Mobile learning support",
+        "Basic assessments and quizzes"
+      ]
+    },
+    {
+      name: "Pro Plan",
+      subtitle: "Most Popular Choice",
+      price: "59",
+      period: "month",
+      isPopular: true,
+      description: "Ideal for serious learners seeking comprehensive education",
+      buttonText: "Start 7-day free trial",
+      buttonVariant: "solid",
+      features: [
+        "Access 10,000+ courses and Specializations",
+        "Unlimited certificates",
+        "Interactive assignments",
+        "Peer feedback and reviews",
+        "Expert instructor support",
+        "Group discussion forums",
+        "Advanced project assessments"
+      ]
+    },
+    {
+      name: "Annual Plan",
+      subtitle: "Best Value",
+      price: "399",
+      period: "year",
+      description: "Maximum flexibility with the best savings",
+      buttonText: "Try Annual Plan",
+      buttonVariant: "outline",
+      features: [
+        "Everything in Pro Plan",
+        "Save 44% compared to monthly",
+        "Exclusive webinars and events",
+        "Priority support",
+        "Early access to new courses",
+        "Downloadable course materials",
+        "Personal learning coach"
+      ]
+    }
+  ];
+
   return (
-    <section className="py-16 px-4 bg-blue-50">
+    <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Single learning program */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-bold mb-2">Single learning program</h3>
-            <p className="text-sm text-gray-600 mb-4">Learn a single topic or skill and earn a credential</p>
-            
-            <div className="mb-6">
-              <span className="text-3xl font-bold">$49 – $79</span>
-              <span className="text-gray-600 text-sm">/month</span>
-            </div>
-            
-            <p className="text-sm mb-8">Visit an individual course or Specialization page to purchase.</p>
-            
-            <div className="border-t pt-6">
-              <div className="flex mb-4">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Access all courses within the learning program</p>
-              </div>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold mb-4">Choose Your Learning Journey</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Select the plan that best fits your learning goals and budget. All plans include access to world-class education.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {plans.map((plan, index) => (
+            <div key={index} className={`relative bg-white rounded-2xl shadow-lg overflow-hidden ${plan.isPopular ? 'ring-2 ring-blue-600' : ''}`}>
+              {plan.isPopular && (
+                <div className="bg-blue-600 text-white text-sm font-medium px-4 py-1.5 absolute top-0 left-1/2 transform -translate-x-1/2 rounded-b-lg">
+                  Most Popular
+                </div>
+              )}
               
-              <div className="flex">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Earn a certificate upon completion after your trial ends</p>
+              <div className="p-8">
+                <div className={`${plan.isPopular ? 'pt-8' : ''}`}>
+                  <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+                  <p className="text-sm text-gray-600 mb-4">{plan.description}</p>
+                  
+                  <div className="mb-6">
+                    {plan.priceRange ? (
+                      <div>
+                        <span className="text-3xl font-bold">{plan.priceRange}</span>
+                        <span className="text-gray-600 text-sm ml-1">/month</span>
+                      </div>
+                    ) : (
+                      <div>
+                        <span className="text-3xl font-bold">${plan.price}</span>
+                        <span className="text-gray-600 text-sm ml-1">/{plan.period}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <button 
+                    className={`w-full py-3 px-4 rounded-xl font-medium transition-colors duration-200 ${
+                      plan.buttonVariant === 'solid'
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
+                    }`}
+                  >
+                    {plan.buttonText}
+                  </button>
+
+                  {plan.buttonVariant === 'solid' ? (
+                    <p className="text-sm text-center mt-2 text-gray-600">Cancel anytime</p>
+                  ) : plan.name === "Annual Plan" ? (
+                    <p className="text-sm text-center mt-2 text-gray-600">14-day money-back guarantee</p>
+                  ) : null}
+                </div>
+
+                <div className="border-t mt-8 pt-6">
+                  <p className="font-medium mb-4 text-sm">Plan includes:</p>
+                  {plan.features.map((feature, i) => (
+                    <PlanFeature key={i} text={feature} />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-          
-          {/* Coursera Plus Monthly */}
-          <div className="bg-white p-6 rounded-lg shadow-sm relative">
-            <div className="bg-blue-600 text-white text-center py-1 px-4 absolute top-0 inset-x-0 rounded-t-lg">
-              Most popular
-            </div>
-            <h3 className="text-xl font-bold mb-2 mt-6">Coursera Plus Monthly</h3>
-            <p className="text-sm text-gray-600 mb-4">Complete multiple courses and earn credentials in the short term</p>
-            
-            <div className="mb-6">
-              <span className="text-3xl font-bold">$59</span>
-              <span className="text-gray-600 text-sm">/month</span>
-            </div>
-            
-            <button className="w-full bg-blue-600 text-white py-3 rounded-md mb-2">
-              Start 7-day free trial
-            </button>
-            <p className="text-sm text-center mb-8">Cancel anytime</p>
-            
-            <div className="border-t pt-6">
-              <div className="flex mb-4">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Access 10,000+ courses and Specializations from 170+ leading companies and universities</p>
+          ))}
+        </div>
+
+        {/* Additional Benefits Section */}
+        <div className="mt-16 text-center">
+          <h3 className="text-xl font-semibold mb-8">All Plans Include</h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Certificate",
+                description: "Earn recognized certificates upon completion"
+              },
+              {
+                title: "Flexible Learning",
+                description: "Learn at your own pace, on your schedule"
+              },
+              {
+                title: "Expert Instructions",
+                description: "Learn from industry professionals"
+              },
+              {
+                title: "Lifetime Access",
+                description: "Access your completed courses forever"
+              }
+            ].map((benefit, index) => (
+              <div key={index} className="p-6 bg-blue-50 rounded-xl">
+                <h4 className="font-semibold mb-2">{benefit.title}</h4>
+                <p className="text-sm text-gray-600">{benefit.description}</p>
               </div>
-              
-              <div className="flex mb-4">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Earn unlimited certificates after your trial ends</p>
-              </div>
-              
-              <div className="flex">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Learn job-relevant skills and succeed in your career</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Coursera Plus Annual */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-bold mb-2">Coursera Plus Annual</h3>
-            <p className="text-sm text-gray-600 mb-4">Combine flexibility and savings with long-term learning goals</p>
-            
-            <div className="mb-6">
-              <span className="text-3xl font-bold">$399</span>
-              <span className="text-gray-600 text-sm">/year</span>
-            </div>
-            
-            <button className="w-full border border-blue-600 text-blue-600 py-3 rounded-md mb-2">
-              Try Coursera Plus Annual
-            </button>
-            <p className="text-sm text-center mb-8">14-day money-back guarantee</p>
-            
-            <div className="border-t pt-6">
-              <p className="text-sm mb-4">Everything included in the monthly plan, plus:</p>
-              
-              <div className="flex mb-4">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Save when you pay up front for the year</p>
-              </div>
-              
-              <div className="flex">
-                <svg className="h-5 w-5 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <p className="text-sm">Enjoy maximum flexibility to achieve work/life balance and learn at your own pace</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
