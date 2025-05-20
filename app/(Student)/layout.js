@@ -1,4 +1,4 @@
- import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import ToasterClient from "./ToasterClient";
 
@@ -17,7 +17,7 @@ export const metadata = {
   description: "E-learning platform for students and teachers to learn and teach online ",
 };
 
-export default function StudentLayout({ children }) {
+export default function AdminLayout({ children }) {
   return (
     <html lang="en">
       <body
