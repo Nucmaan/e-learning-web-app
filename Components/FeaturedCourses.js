@@ -47,7 +47,7 @@ const FeaturedCourses = () => {
       <div className="container mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold mb-3">All the skills you need in one place</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">From critical skills to technical topics, Udemy supports your professional development.</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">From critical skills to technical topics, E-laerning supports your professional development.</p>
         </div>
         
         <div className="flex justify-between items-center mb-8">
